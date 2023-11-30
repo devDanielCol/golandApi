@@ -16,7 +16,7 @@ My name is Daniel, I am a software developer, I am focus in computer science and
 
 ## Follow Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%40daniel-cubillos-r-07-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-cubillos-r-07)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%40Daniel_Cubillos-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-cubillos-r-07)
 
 
 
@@ -47,9 +47,10 @@ localhost:8080/login
 
 ## Installation
 
-Install my-project with go
+Install this Demo project with the followen commands:
 
 ```bash
+  git clone [`path`]
   go install
   go run ./main.go
 ```
