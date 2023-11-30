@@ -1,21 +1,21 @@
-package api
+package HttpPort
 
 import (
 	"log"
 	"net/http"
 	"time"
 
-	"apiGoHttp/pkg/adapters"
+	httpAdapter "apiGoHttp/internal/adapters/http"
 )
 
-var httpAdapters *adapters.Adapters
+var httpAdapters *httpAdapter.Adapters
 
-func StartRouter() {
-	httpAdapters = &adapters.Adapters{}
+func startRouter() {
+	httpAdapters = &httpAdapter.Adapters{}
 	http.HandleFunc("/login", httpAdapters.Login)
 }
 
-func StartServer() {
+func startServer() {
 	server := &http.Server{
 		Addr:           ":8080",
 		Handler:        nil,
@@ -26,4 +26,9 @@ func StartServer() {
 
 	log.Println("Server Initialized")
 	log.Fatal(server.ListenAndServe())
+}
+
+func InitApp() {
+	startRouter()
+	defer startServer()
 }

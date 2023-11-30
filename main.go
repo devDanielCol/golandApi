@@ -1,10 +1,9 @@
 package main
 
 import (
-	"apiGoHttp/pkg/api"
+	HttpPort "apiGoHttp/internal/ports/http"
 )
 
 func main() {
-	api.StartRouter()
-	defer api.StartServer()
+	defer HttpPort.InitApp()
 }

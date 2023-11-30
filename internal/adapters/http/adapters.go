@@ -1,4 +1,4 @@
-package adapters
+package httpAdapter
 
 import (
 	"encoding/json"
@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"apiGoHttp/pkg/core"
+	core "apiGoHttp/internal/core"
 )
 
 type Adapters struct{}
@@ -26,7 +26,13 @@ func (h *Adapters) Login(res http.ResponseWriter, req *http.Request) {
 		body, err := io.ReadAll(req.Body)
 
 		if err != nil {
-			log.Println(err.Error())
+			http.Error(res, "Error in body reading", http.StatusInternalServerError)
+			log.Panic("Not user data registered")
+		}
+
+		if len(body) == 0 {
+			res.Write([]byte("Body cant be empty"))
+			return
 		}
 
 		var bodyData core.LoginInfo
@@ -42,11 +48,9 @@ func (h *Adapters) Login(res http.ResponseWriter, req *http.Request) {
 		login, err := routes.Login()
 
 		if err != nil {
-			response.Status = true
-			response.Message = err.Error()
+			response = &ResponseData{Status: false, Message: "Error in login: " + err.Error()}
 		} else {
-			response.Status = false
-			response.Message = login
+			response = &ResponseData{Status: true, Message: login}
 		}
 
 		marshalResponse, err := json.Marshal(response)
@@ -57,10 +61,7 @@ func (h *Adapters) Login(res http.ResponseWriter, req *http.Request) {
 
 		res.Write(marshalResponse)
 	} else {
-
-		response.Status = false
-		response.Message = "This api only acept a POST method"
-
+		response = &ResponseData{Status: false, Message: "This api only acept a POST method"}
 		marshalResponse, err := json.Marshal(response)
 		if err != nil {
 			log.Panic("An error ocurred marshaling data in jason", err.Error())
