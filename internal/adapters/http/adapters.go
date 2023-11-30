@@ -19,6 +19,7 @@ type ResponseData struct {
 var response *ResponseData
 
 func (h *Adapters) Login(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	if req.Method == "POST" {
 		defer req.Body.Close()
