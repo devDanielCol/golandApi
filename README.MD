@@ -16,16 +16,28 @@ My name is Daniel, I am a software developer, I am focus in computer science and
 
 ## Follow Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%40tu_usuario-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-cubillos-r-07)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%40daniel-cubillos-r-07-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/daniel-cubillos-r-07)
 
 
 
 ## Demo
 
-Download this code, and run the following commands:
+Download this demo code, and run the following commands:
 
-go install
-go run ./main.go
+```bash
+  go install
+  go run ./main.go
+```
+
+Use postman for make a Post request with a body request like this:
+
+```json
+  {
+    "email": "goland@google.com",
+    "password": "123456"
+  }
+```
+And add others components if you want.
 
 localhost:8080/login
 ## License
@@ -35,7 +47,7 @@ localhost:8080/login
 
 ## Installation
 
-Install my-project with npm
+Install my-project with go
 
 ```bash
   go install
