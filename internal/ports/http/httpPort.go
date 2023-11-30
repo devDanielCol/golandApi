@@ -8,6 +8,10 @@ import (
 	httpAdapter "apiGoHttp/internal/adapters/http"
 )
 
+const (
+	port = ":8080"
+)
+
 var httpAdapters *httpAdapter.Adapters
 
 func startRouter() {
@@ -17,14 +21,14 @@ func startRouter() {
 
 func startServer() {
 	server := &http.Server{
-		Addr:           ":8080",
+		Addr:           port,
 		Handler:        nil,
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
 
-	log.Println("Server Initialized")
+	log.Println("Server Initialized, listening port: ", port)
 	log.Fatal(server.ListenAndServe())
 }
 
